@@ -29,13 +29,19 @@ export class TasksController {
   }
 
  @Get()
-  getTasks(@Query(ValidationPipe) filterDto: GetTasksFilterDto): Promise<Task[]> {
-    return this.tasksService.getTasks(filterDto);
+  getTasks(
+    @Query(ValidationPipe) filterDto: GetTasksFilterDto,
+    @GetUser() user: User,
+ ): Promise<Task[]> {
+    return this.tasksService.getTasks(filterDto, user);
   }
 
   @Get('/:id') // or @Get(':id')
-  async getTaskById(@Param('id', ParseIntPipe) id: number): Promise<Task> {
-    return await this.tasksService.getTaskById(id);
+  async getTaskById(
+    @Param('id', ParseIntPipe) id: number,
+    @GetUser() user: User,
+  ): Promise<Task> {
+    return await this.tasksService.getTaskById(id, user);
   }
 
   @Post()
@@ -56,7 +62,11 @@ export class TasksController {
 
   @Patch('/:id/status')
   //   updateTask(@Param('id') id: string, @Body('status', new TaskStatusValidationPipe(...args)) status: TaskStatus): Task {
-  updateTask(@Param('id', ParseIntPipe) id: number, @Body('status', TaskStatusValidationPipe) status: TaskStatus): Promise<Task> {
-    return this.tasksService.updateTask(id, status);
+  updateTask(
+    @Param('id', ParseIntPipe) id: number,
+    @Body('status', TaskStatusValidationPipe) status: TaskStatus,
+    @GetUser() user: User
+  ): Promise<Task> {
+    return this.tasksService.updateTask(id, status, user);
   }
 }

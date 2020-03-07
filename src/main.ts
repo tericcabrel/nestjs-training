@@ -5,14 +5,12 @@ import * as config from 'config';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
+  const serverConfig: any = config.get('server');
+
   const logger = new Logger('bootstrap');
   const app = await NestFactory.create(AppModule);
 
-  const serverConfig = config.get('server');
-
-  console.log(serverConfig);
-
-  const port = 3000;
+  const port = process.env.PORT || serverConfig.port;
 
   await app.listen(port);
 

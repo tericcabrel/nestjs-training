@@ -7,7 +7,7 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   username: 'develop',
   password: 'suprageek95',
   database: 'taskman',
-  entities: [__dirname + '/../**/*/.entity.ts'],
-  synchronize: true, // Not recommend in production
+  entities: [__dirname + '/../**/*.entity.js'],
+  synchronize: true, // Not recommended in production
 };
 

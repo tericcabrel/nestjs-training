@@ -1,0 +1,8 @@
+db:
+  host: 'localhost'
+  username: 'develop'
+  password: 'suprageek95'
+  synchromize: true
+
+jwt:
+  secret: 'RaPatoBelle2020'

@@ -1,2 +1,5 @@
+server:
+  origin: tericcabrel.com
+
 db:
   synchromize: true
